@@ -1,7 +1,5 @@
 <!doctype html>
 <html lang="en">
-{% load staticfiles %}
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,20 +36,20 @@
   <body>
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="{% url 'home'%}">William Torres</a>
+      <a class="navbar-brand" href="#">William Torres</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <a class="nav-link" href="http:">Twitter </a>
+            <a class="nav-link" href="#">Twitter </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% static 'WATA CV Actuary 201805.pdf' %}">Resume</a>
+            <a class="nav-link" href="#">Resume</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/blog">Blog</a>
+            <a class="nav-link active" href="#">Blog</a>
           </li>
 
         </ul>
@@ -60,39 +58,25 @@
     </header>
 
 <main role="main">
+  <div class = "container">
+    <h1 class="text-center pt-3">Welcome to my Blog</h1>
+    </br>
+    </br>
+    <h2>Latest Posts</h2>
+    <hr/>
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Hi, I'm William.</h1>
-      <p class="lead text-muted">Hey, my name is William Torres and I love to make Django websites. It's the thrill of handling hte requests the people wants.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Email me</a>
-      </p>
-      <img src="{% static 'thumbnail_IMG_1787.png' %}" height=300 />
-    </div>
-  </section>
+    {% for blog in blogs.all %}
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+      <a href=""><h3>{{ blog.title }}</h3></a>
+      <!-- </br> -->
+      {{ blog.pub_date_pretty }}
+    <br/>
+    <img src="{{blog.image_blog.url}}" width=200 />
+    <br/>
+    <p> {{ blog.summary }} </p>
+    {% endfor %}
 
-      <div class="row">
-
-        {% for job in jobs.all  %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src =" {{job.image.url}} " />
-            <div class="card-body">
-              <p class="card-text"> {{job.summary}} </p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-
-
-      </div>
-    </div>
   </div>
-
 </main>
 
 <footer class="text-muted">
